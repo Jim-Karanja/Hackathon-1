@@ -1,46 +1,296 @@
-body{
-    background-color: aquamarine;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 17px;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap');
+
+/*==================== VARIABLES CSS ====================*/
+:root {
+    --header-height: 3rem;
+
+    /* Colors */
+    --hue-color: 240;
+    --first-color: hsl(var(--hue-color), 92%, 28%);
+    --first-color-second: hsl(var(--hue-color), 42%, 34%);
+    --first-color-alt: hsl(var(--hue-color), 57%, 53%);
+    --first-color-lighter: hsl(var(--hue-color), 92%, 85%);
+    --title-color: cyan; 
+    --text-color: black; 
+    --text-color-light: hsl(var(--hue-color), 92%, 52%);
+    --input-color: hsl(var(--hue-color), 70%, 96%);
+    --body-color: #FFFDD0; 
+    --container-color: #ddbf17;
+    --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
+    --scroll-thumb-color: hsl(var(--hue-color), 12%, 80%);
+    --menu-hover-color: blue; 
+
+    /* Font and typography */
+    --body-font: 'Space Grotesk', sans-serif;
+    --big-font-size: 2rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1.125rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+
+    /* Font weight */
+    --font-medium: 600;
+    --font-semi-bold: 750;
+
+    /* Margins Bottom */
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-0-75: .75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+    --mb-3: 3rem;
+
+    /* Z index */
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
 }
-header{
-    color: #fff;
-    padding: 1 rem 0;
+
+/* Ensure the new styles are applied to #about */
+#about {
+    background-color: var(--first-color-lighter) !important;
+    padding: 2rem 1.5rem !important;
+    border-radius: 0.5rem !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+    margin-bottom: var(--mb-2) !important;
+}
+
+/* Specific styles for h2 within #about */
+#about h2 {
+    font-size: var(--h1-font-size) !important;
+    color: var(--first-color) !important;
+    text-align: center !important;
+    margin-bottom: var(--mb-1) !important;
+}
+
+/* Specific styles for p within #about */
+#about p {
+    font-size: var(--normal-font-size) !important;
+    color: var(--text-color) !important;
+    line-height: 1.6 !important;
+    text-align: center !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+}
+
+/* Font size for large devices */
+@media screen and (min-width: 968px) {
+    :root {
+        --big-font-size: 3rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+    }
+}
+
+/* Dark theme variables 
+body.dark-theme {
+    --first-color-second: hsl(var(--hue-color), 30%, 8%);
+    --title-color: cyan;
+    --text-color: white;
+    --input-color: hsl(var(--hue-color), 29%, 16%);
+    --body-color: hsl(var(--hue-color), 0%, 0%);
+    --container-color: hsl(var(--hue-color), 29%, 16%);
+    --scroll-bar-color: hsl(var(--hue-color), 12%, 40%);
+    --scroll-thumb-color: hsl(var(--hue-color), 12%, 59%);
+}
+
+/* Base styles */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0 0 var(--header-height) 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+h1, h2, h3, h4 {
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--first-color);
+}
+
+a:hover, a:focus {
+    color: var(--menu-hover-color);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Reusable CSS classes */
+.section {
+    padding: 2rem 0 4rem;
+}
+
+.section__title {
+    font-size: var(--h1-font-size);
+    color: var(--title-color);
     text-align: center;
 }
-header h1{
-    margin-bottom: 0.5rem;
-}
-nav ul{ 
-    text-decoration: none;
-    padding: 0;
 
-}
-nav ul li{
-    display: inline;
-    margin-right: 10px;
-}
-nav ul li a{
-    text-decoration: none;
-}
-section{
-    padding: 2rem;
-    max-width: 800px;
-    margin: 0auto;
-    background: #fff ;
-    box-shadow: 0 0 10px black;
-}
-form label{
+.section__subtitle {
     display: block;
-    margin-bottom:0.5rem;
+    font-size: var(--small-font-size);
+    margin-bottom: var(--mb-3);
+    text-align: center;
 }
-form input,form textarea{
+
+/* Layout */
+.container {
+    max-width: 768px;
+    margin-left: var(--mb-1-5);
+    margin-right: var(--mb-1-5);
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+header {
     width: 100%;
-    padding:0.5rem;
-    border:1pxsolid #ccc;
-    border-radius:4px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+    background-color: var(--body-color);
+    border-bottom: 1px solid var(--scroll-bar-color);
+    padding: 1rem 0;
+    text-align: center;
 }
+
+header h1 {
+    margin: var(--mb-0-5) 0;
+    font-size: var(--big-font-size);
+    color: var(--first-color);
+}
+
+header h2 {
+    margin: var(--mb-1) 0;
+    font-size: var(--h2-font-size);
+    color: var(--first-color-second);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: var(--mb-1-5) 0;
+}
+
+nav ul li a {
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    color: var(--text-color);
+    transition: color 0.3s;
+}
+
+nav ul li a:hover, nav ul li a:focus {
+    color: var(--menu-hover-color);
+}
+
+main {
+    margin-top: var(--header-height);
+}
+
+section {
+    padding: 4rem 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+section h2 {
+    font-size: var(--h1-font-size);
+    color: var(--title-color);
+    margin-bottom: var(--mb-1);
+}
+
+section h2 + p {
+    color: var(--text-color);
+}
+
+section p, section ul {
+    font-size: var(--normal-font-size);
+    margin-bottom: var(--mb-1-5);
+    color: var(--text-color);
+}
+
+section ul li {
+    margin-bottom: var(--mb-0-5);
+}
+
+.experience-item h3 {
+    font-size: var(--h2-font-size);
+    color: var(--first-color);
+    margin-bottom: var(--mb-0-5);
+}
+
+.experience-item p {
+    font-size: var(--normal-font-size);
+    color: var(--text-color);
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: var(--mb-1);
+    border: 1px solid var(--scroll-bar-color);
+    border-radius: 0.25rem;
+    font-size: var(--normal-font-size);
+    background-color: var(--input-color);
+}
+
+form button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background-color: var(--first-color);
+    color: white;
+    cursor: pointer;
+    font-size: var(--normal-font-size);
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: var(--first-color-alt);
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background-color: var(--container-color);
+    color: var(--text-color);
+    border-top: 1px solid var(--scroll-bar-color);
+}
+
+footer p {
+    font-size: var(--small-font-size);
+}
+
